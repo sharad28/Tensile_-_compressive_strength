@@ -28,7 +28,7 @@ strength of MSC is still necessary.
 ##This model will do predicting the tensile strength of concrete with the help of compressive strength, curing day, stone powder content, fineness modules of sand,& water to cement ratio.
 
 ### DATA SET
-![img.png](img.png)
+
 A consisted of 755 datasets of splitting tensile strength at
 different curing days of MSC was assembled from 41 experimental
 studies.
