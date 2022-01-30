@@ -1,12 +1,19 @@
 import pandas as pd
 from docx import Document
+import argparse
 from src.utils.logg import App_Logger
-
+from src.utils.common import read_yaml
+from src.utils.common import create_dir
 
 class Rawdata:
-    def __init__(self, path):
-        self.file_object = open("artifacts/log/Rawdata.txt", 'a+')
+    def __init__(self,config_content):
+        self.config_content = config_content
+        __artifact = config_content['artifacts']
+        __dir = os.path.join(__artifact['ARTIFACTS_DIR'],__artifact['LOG_DIR'])
+        file_path = f'{_dir}/Rawdata.txt'
+        self.file_object = open(file_path, 'a+')
         self.log_writer = App_Logger()
+        self.log_writer.log(self.file_object, "file logger started ")
 
     def read_docx(self, path, num: int = 0):
         """
@@ -20,30 +27,57 @@ class Rawdata:
         :return: Return the table content in pandas dataframe format
         """
         try:
-            self.log_writer(self.file_object,"Starting extraction of dataset")
+            __artifact_dir = self.config_content['artifacts']['ARTIFACTS_DIR']
+            __path = self.config_content['artifacts']['RAW_DATA']
+            path = os.path.join(__artifact_dir,__path)
+            self.log_writer.log(self.file_object,"Starting extraction of dataset")
             #creating object for document
-            document = Document(path)
+            __document = Document(path)
 
             #selection of table in document
-            table = document.tables[num]
+            __table = __document.tables[num]
 
             #reading cell
-            data = [[cell.text for cell in row.cells] for row in table.rows]
+            __data = [[cell.text for cell in row.cells] for row in __table.rows]
 
             #coverting to pandas dataframe
-            df = pd.DataFrame(data)
+            __df = pd.DataFrame(__data)
 
             #Convert first index to header
-            df = df.rename(columns=pd.Series([i.replace('\n', "") for i in df.iloc[0]]))
-            df = df.drop(index=0)
+            __df = __df.rename(columns=pd.Series([i.replace('\n', "") for i in __df.iloc[0]]))
+            __df = __df.drop(index=0)
         except Exception as e:
-            self.log_writer(self.file_object,"Exception error during Docx to csv to raw folder ")
+            self.log_writer.log(self.file_object,"Exception error during Docx to csv to raw folder ")
         #method to convert df to csv
-        self.DataFrame_to_csv(df)
+        self.DataFrame_to_csv(__df)
 
 
 
     def DataFrame_to_csv(self,df):
+        __artifact_dir = self.config_content['artifacts']['ARTIFACTS_DIR']
+        __init_data_dir = self.config_content['artifacts']['INITIAL_PREPARED_DATA']
+        dir = os.path.join(__artifact_dir,__init_data_dir)
+        create_dir(dir)
+        file_csv= os.path.join(dir,'init_data.csv')
+        df.to_csv(file_csv,index=False)
 
-        df.to_csv('Read_data\data_read.csv',index=False)
+if __name__ == '__main__':
+    args = argparse.ArgumentParser()
+    args.add_argument("--config", "-c", default="configs/config.yaml")
+    # args.add_argument("--params", "-p", default="params.yaml")
+    parsed_args = args.parse_args()
 
+    try:
+        Gen_log=App_Logger()
+        Gen_log.Gen_log("\n********************")
+        Gen_log.Gen_log(f">>>>> Preprocessing of data is started <<<<<")
+        config_path = parsed_args.config
+        config_content = read_yaml(config_path)
+        # rw_path = content['artifacts']['RAW_DATA']
+        rw=Rawdata(config_content)
+        rw.read_docx(rw_path)
+        # main(config_path=parsed_args.config, params_path=parsed_args.params)
+        Gen_log.Gen_log(f">>>>> Raw_data is extracted from DOCX to CSV format<<<<<\n")
+    except Exception as e:
+        Gen_log.Gen_log(f" exception :  {e}")
+        raise e
