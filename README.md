@@ -66,7 +66,7 @@ mode-The mode is the value that appears most often in a set of data values
 ```
 ![median](https://user-images.githubusercontent.com/62197447/151695755-7088c5e8-adcb-4964-8266-2a88a63bfda6.png)
 
-Its has been proven to be the best methods for prediction of concrete strength in various papers.
+Its has been proven to be the best methods are XGBoost for prediction of concrete strength in various papers.
 
 
 
