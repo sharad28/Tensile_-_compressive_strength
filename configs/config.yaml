@@ -1,7 +1,8 @@
 artifacts:
   ARTIFACTS_DIR: artifacts
   LOG_DIR: logs
-  RAW_DATA: raw_data/1-s2.0-S2352340917300628-mmc2.docx
+  RAW_DATA: raw_data
+  RAW_FILE: 1-s2.0-S2352340917300628-mmc2.docx
   INITIAL_PREPARED_DATA: initial_prepared_data
   PREPARED_DATA: prepared
   TRAIN_DATA: train.tsv
