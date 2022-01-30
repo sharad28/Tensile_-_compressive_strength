@@ -25,7 +25,7 @@ under flexure, shear, torsion, punching, fatigue and impaction,
 the further studies on the determination of long-term tensile
 strength of MSC is still necessary.
 ```
-##This model will do predicting the tensile strength of concrete with the help of compressive strength, curing day, stone powder content, fineness modules of sand,& water to cement ratio.
+##This model will do predicting the tensile strength & compressive strength of concrete
 
 ### DATA SET
 
@@ -48,7 +48,23 @@ fresh MSC varied from 10 mm to 260 mm, the curing time of specimens
 ranged from 1 day to 388 days. The compressive strength of
 MSC at 28 days ranged from 10.1 MPa to 96.3 MPa.
 
-###**As Data set have few missing values in slump and sand ratio. I will use XGBoost and ANN for prediction of tensile strength.**
+##**As Data set have few missing values.**
+###Missing values can be handle by following methods:
+```buildoutcfg
+1. Removing the instance with any missing features - 
+In this method, the missing values are deleted from the dataset. In 
+general, this method is adopted only when the proportion of missing 
+values is significantly small (<5%).
+Also dataset is small. therefore its not a good idea to remove the instance.
+```
+
+```buildoutcfg
+2. Using mean/median/mode
+mean- average values in whole feature
+median- The median is the middle number in a sorted, ascending or descending
+![img.png](img.png)
+mode-The mode is the value that appears most often in a set of data values
+```
 
 Its has been proven to be the best methods for prediction of concrete strength in various papers.
 
@@ -57,7 +73,3 @@ Its has been proven to be the best methods for prediction of concrete strength i
 
 
 
-```
-initial setup for project config
-python webapp\project_library_layer\initializer\setup_configuration.py
-```
