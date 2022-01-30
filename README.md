@@ -62,7 +62,6 @@ Also dataset is small. therefore its not a good idea to remove the instance.
 2. Using mean/median/mode
 mean- average values in whole feature
 median- The median is the middle number in a sorted, ascending or descending
-
 mode-The mode is the value that appears most often in a set of data values
 ```
 ![median](https://user-images.githubusercontent.com/62197447/151695755-7088c5e8-adcb-4964-8266-2a88a63bfda6.png)
