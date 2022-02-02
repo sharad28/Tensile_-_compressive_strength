@@ -47,7 +47,7 @@ mw/mc = 0.30 ~ 1.43. The sand ratio was 24% ~ 54%. The slump of
 fresh MSC varied from 10 mm to 260 mm, the curing time of specimens 
 ranged from 1 day to 388 days. The compressive strength of
 MSC at 28 days ranged from 10.1 MPa to 96.3 MPa.
-
+![img_1.png](img_1.png)
 ##**As Data set have few missing values.**
 ###Missing values can be handle by following methods:
 ```buildoutcfg
@@ -64,6 +64,8 @@ mean- average values in whole feature
 median- The median is the middle number in a sorted, ascending or descending
 mode-The mode is the value that appears most often in a set of data values
 ```
+
+
 ![median](https://user-images.githubusercontent.com/62197447/151695755-7088c5e8-adcb-4964-8266-2a88a63bfda6.png)
 
 Its has been proven to be the best methods are XGBoost for prediction of concrete strength in various papers.
