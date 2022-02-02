@@ -50,6 +50,7 @@ MSC at 28 days ranged from 10.1 MPa to 96.3 MPa.
 ![img_1.png](img_1.png)
 ##**As Data set have few missing values.**
 ![img_2.png](img_2.png)
+
 ###Missing values can be handle by following methods:
 ```buildoutcfg
 1. Removing the instance with any missing features - 
