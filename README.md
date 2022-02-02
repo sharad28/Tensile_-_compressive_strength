@@ -49,7 +49,8 @@ ranged from 1 day to 388 days. The compressive strength of
 MSC at 28 days ranged from 10.1 MPa to 96.3 MPa.
 ![img_1.png](img_1.png)
 ##**As Data set have few missing values.**
-![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+above data is before missing value handling
 
 ###Missing values can be handle by following methods:
 ```buildoutcfg
