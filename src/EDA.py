@@ -66,17 +66,22 @@ class EDA:
         """
         try:
             config_content=config_data()
-            __K = config_content['artifacts']['KNN_N_NEIGHBORS']
-            __weights = config_content['artifacts']['KNN_WEIGHTS']
+            artifacts = config_content["artifacts"]
+            __K = artifacts['KNN_N_NEIGHBORS']
+            __weights = artifacts['KNN_WEIGHTS']
+
             ##object of knnimputer is created
             __KNN = KNNImputer(n_neighbors=__K,weights=__weights)
-            # __KNN.fit_transform(df)
+
+            logging.info(f"Missing values in Dataset without KNN_imputation: \n{df.isna().sum().sum()}")
             df_transform = pd.DataFrame(__KNN.fit_transform(df), columns=df.columns)
-            artifacts = config_content["artifacts"]
+            logging.info(f"Missing values in Dataset with KNN_imputation: \n{df_transform.isna().sum().sum()}")
+
             artifacts_dir = artifacts['ARTIFACTS_DIR']
             prepared_data = artifacts['PREPARED_DATA']
             __path = os.path.join(artifacts_dir,prepared_data)
             create_dir(__path)
+
             df_transform.to_csv(os.path.join(__path,"KNN_df.csv"),index=False)
             logging.info("Knn imputation is completed")
         except Exception as e:
