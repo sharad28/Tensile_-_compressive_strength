@@ -4,5 +4,7 @@ artifacts:
   RAW_DATA: raw_data
   RAW_FILE: 1-s2.0-S2352340917300628-mmc2.docx
   INITIAL_PREPARED_DATA: initial_prepared_data
-  PREPARED_DATA: prepared
+  PREPARED_DATA: EDA_prepared_data
+  KNN_N_NEIGHBORS : 5
+  KNN_WEIGHTS : uniform
 
