@@ -1,28 +1,43 @@
 import numpy as np
 import pandas as pd
 import logging
-# from pandas_profiling import ProfileReport
+import matplotlib.pyplot as plt
+import argparse
+import os
+from sklearn.model_selection import train_test_split
+from sklearn.impute import KNNImputer,SimpleImputer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
 import time
 
+from src.utils.common import read_yaml
+from src.utils.common import create_dir
+from src.utils.common import config_data
+
 logging.basicConfig(
-    filename=os.path.join("logs", 'running_logs.log'),
+    filename=os.path.join('artifacts',"logs", 'running_logs.log'),
     level=logging.INFO,
     format="[%(asctime)s: %(levelname)s: %(module)s]: %(message)s",
     filemode="a"
     )
 
 class EDA:
-    def __ini__(self):
+    def __ini__(self,):
         pass
     def read_csv(self,path):
-        return pd.read_csv(path)
+        try:
+            logging.info("Start reading csv files for EDA")
+            return pd.read_csv(path)
+            logging.info("Completed reading csv files for EDA")
+        except Exception as e:
+            logging.exception(f"Exception: \n {e} \n occur during reading csv file")
 
     # def generate_report(self,df,name):
     #     self.profile = ProfileReport(df, title="Pandas Profiling Report")
     #
     #     self.profile.to_file("your_report.html")
 
-    def missing_val_handling_by_removal(self,df : np.DataFrame):
+    def missing_val_handling_by_removal(self,df: pd.DataFrame):
         """
         This funciton removes all the data from datafame contain
         any missing value
@@ -41,11 +56,46 @@ class EDA:
 
         return __nw_df
 
-    def missing_val_handling_by_mean(self,df : np.DataFrame):
+    def missing_val_handling_by_KNN(self,df : pd.DataFrame):
         """
-        This funciton replace all null values with mean of its columns
+        This will fit the KNN_Imputer to training dataset
 
         :param df: Data in numpy.DataFrame format
-        :return: Dataframe with replaceing nan with mean
+        (value input should be in numeric format only)
+        :return: return imputed dataset
         """
-        
+        try:
+            config_content=config_data()
+            __K = config_content['artifacts']['KNN_N_NEIGHBORS']
+            __weights = config_content['artifacts']['KNN_WEIGHTS']
+            ##object of knnimputer is created
+            __KNN = KNNImputer(n_neighbors=__K,weights=__weights)
+            # __KNN.fit_transform(df)
+            df_transform = pd.DataFrame(__KNN.fit_transform(df), columns=df.columns)
+            artifacts = config_content["artifacts"]
+            artifacts_dir = artifacts['ARTIFACTS_DIR']
+            prepared_data = artifacts['PREPARED_DATA']
+            __path = os.path.join(artifacts_dir,prepared_data)
+            create_dir(__path)
+            df_transform.to_csv(os.path.join(__path,"KNN_df.csv"),index=False)
+            logging.info("Knn imputation is completed")
+        except Exception as e:
+            logging.exception(f"Exception: \n {e} \noccur during KNN imputation")
+
+
+
+if __name__ == '__main__':
+
+
+    try:
+        logging.info("EDA file is started running")
+
+        eda = EDA()
+        df = eda.read_csv('artifacts/initial_prepared_data/Updated_init_data.csv')
+        eda.missing_val_handling_by_KNN(df)
+        logging.info("EDA.py run is completed")
+    except Exception as e:
+        logging.warning(f" exception :  {e}")
+        raise e
+    finally:
+        logging.info("Exist of EDA.py is completed")
