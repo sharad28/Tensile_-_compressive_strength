@@ -67,8 +67,9 @@ class EDA:
         try:
             config_content=config_data()
             artifacts = config_content["artifacts"]
-            __K = artifacts['KNN_N_NEIGHBORS']
-            __weights = artifacts['KNN_WEIGHTS']
+            params = config_content["params"]
+            __K = params['KNN_N_NEIGHBORS']
+            __weights = params['KNN_WEIGHTS']
 
             ##object of knnimputer is created
             __KNN = KNNImputer(n_neighbors=__K,weights=__weights)
@@ -81,8 +82,8 @@ class EDA:
             prepared_data = artifacts['PREPARED_DATA']
             __path = os.path.join(artifacts_dir,prepared_data)
             create_dir(__path)
-
-            df_transform.to_csv(os.path.join(__path,"KNN_df.csv"),index=False)
+            filename = artifacts['PREPARED_DATA_FILE_NAME']
+            df_transform.to_csv(os.path.join(__path,filename),index=False)
             logging.info("Knn imputation is completed")
         except Exception as e:
             logging.exception(f"Exception: \n {e} \noccur during KNN imputation")
