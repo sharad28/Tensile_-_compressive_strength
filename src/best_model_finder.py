@@ -9,6 +9,7 @@ import numpy as np
 from src.utils.common import config_data
 import logging
 import os
+import pandas as pd
 
 logging.basicConfig(
     filename=os.path.join('artifacts',"logs", 'running_logs.log'),
@@ -24,7 +25,7 @@ class Model_finder:
     def __init__(self):
         pass
 
-    def get_params_tune_for_xgboost(self, train_x,train_y,test_x,test_y):
+    def get_params_tune_for_xgboost(self, train_x:pd.DataFrame,train_y:pd.DataFrame,test_x:pd.DataFrame,test_y:pd.DataFrame):
 
         """
                            Method Name: get_best_params_for_xgboost
@@ -51,8 +52,16 @@ class Model_finder:
             # extracting the best parameters
             logging.info(f"Best_params for xgboost regressor is {self.grid.best_params_}")
 
+            # extracting the best parameters
+            self.learning_rate = self.grid.best_params_['learning_rate']
+            self.max_depth = self.grid.best_params_['max_depth']
+            self.n_estimators = self.grid.best_params_['n_estimators']
+
             #new model based with best parameters is created
-            self.xgr = XGBRegressor(self.grid.best_params_)
+            self.xgr = XGBRegressor(learning_rate=self.learning_rate, max_depth=self.max_depth,
+                                    n_estimators=self.n_estimators)
+
+            # self.xgr = XGBRegressor(self.grid.best_params_)
 
             self.xgr.fit(train_x, train_y)
 

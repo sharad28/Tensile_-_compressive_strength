@@ -51,11 +51,10 @@ class trainModel:
             self.X = pre_process.remove_features(data=self.X,columns=self.params['FEATURES_NOT_FOR_TRIANING'])
 
             self.test_train_split = self.params['test_train_split']
-            x_train, x_test, y_train, y_test = train_test_split(self.X, self.y, test_size=self.test_train_split['test_size'],
-                                                                random_state=self.test_train_split['random_state'])
+            x_train, x_test, y_train, y_test = train_test_split(self.X, self.y, test_size=self.test_train_split['test_size'] , random_state=self.test_train_split['random_state'])
 
-
-            xgr_model_after_tuning = Model_finder.get_params_tune_for_xgboost(x_train,y_train,x_test,y_test)
+            model_obj = Model_finder()
+            xgr_model_after_tuning = model_obj.get_params_tune_for_xgboost(x_train, y_train, x_test, y_test)
 
             #Saving the best model to the directory
             file_op=file_operation()

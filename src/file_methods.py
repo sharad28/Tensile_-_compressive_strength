@@ -1,6 +1,7 @@
 import pickle
 import os
 import shutil
+import logging
 from src.utils.common import config_data
 
 class file_operation:
@@ -22,10 +23,11 @@ class file_operation:
         """
         logging.info("Entered the save_model method of the File_Operation class")
         try:
-            artifact = config['artifacts']
+            self.config = config_data()
+            artifact = self.config['artifacts']
             artifact_dir = artifact['ARTIFACTS_DIR']
             model_dir = artifact['MODEL_DIR']
-            target_dir = config['params']['TARGET']
+            target_dir = self.config['params']['TARGET']
             self.model_directory = os.path.join(artifact_dir,model_dir,target_dir)
             if os.path.isdir(self.model_directory):
                 shutil.rmtree(os.path.join(artifact_dir,model_dir))
