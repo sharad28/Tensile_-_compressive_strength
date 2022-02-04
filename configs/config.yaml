@@ -1,10 +1,25 @@
 artifacts:
   ARTIFACTS_DIR: artifacts
+  MODEL_DIR: Models
+  COMPRESS_DIR : Compression
+  TENSILE_DIR : Tensile
   LOG_DIR: logs
   RAW_DATA: raw_data
   RAW_FILE: 1-s2.0-S2352340917300628-mmc2.docx
   INITIAL_PREPARED_DATA: initial_prepared_data
   PREPARED_DATA: EDA_prepared_data
+  PREPARED_DATA_FILE_NAME : preprocessed_data.csv
+
+
+params:
   KNN_N_NEIGHBORS : 5
   KNN_WEIGHTS : uniform
-
+  FEATURES_NOT_FOR_TRIANING : Splitting tensile strengthfst,t(MPa)
+  TARGET: Compressive strengthfcu,t(MPa)
+  XGBOOST_PARAMS:
+    learning_rate: [ 0.5, 0.1, 0.01, 0.001 ]
+    max_depth: [ 3, 5, 10, 20 ]
+    n_estimators: [ 10, 50, 100, 200 ]
+  test_train_split:
+    test_size : 0.33
+    random_state: 28
