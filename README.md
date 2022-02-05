@@ -69,7 +69,7 @@ mode-The mode is the value that appears most often in a set of data values
 ```
 ![](D:\Machine learning concrete\Tensile_compressive_concrete\artifacts\images\index_image.jpg)
 
-![](D:\Machine learning concrete\Tensile_compressive_concrete\artifacts\images\unique-buildings.jpg)
+https://github.com/sharad28/Tensile_-_compressive_strength/blob/main/artifacts/images/unique-buildings.jpg
 
 
 
