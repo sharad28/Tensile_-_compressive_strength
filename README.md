@@ -67,9 +67,10 @@ mean- average values in whole feature
 median- The median is the middle number in a sorted, ascending or descending
 mode-The mode is the value that appears most often in a set of data values
 ```
-![](D:\Machine learning concrete\Tensile_compressive_concrete\artifacts\images\index_image.jpg)
+![index_image](https://user-images.githubusercontent.com/62197447/152661272-77666f4b-ce7c-4bef-9653-2276f46d6643.jpg)
 
-https://github.com/sharad28/Tensile_-_compressive_strength/blob/main/artifacts/images/unique-buildings.jpg
+
+![unique-buildings](https://user-images.githubusercontent.com/62197447/152661269-90493ce7-3f08-430d-b1d0-5e92d071598e.jpg)
 
 
 
