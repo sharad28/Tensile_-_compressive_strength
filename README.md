@@ -47,9 +47,9 @@ mw/mc = 0.30 ~ 1.43. The sand ratio was 24% ~ 54%. The slump of
 fresh MSC varied from 10 mm to 260 mm, the curing time of specimens 
 ranged from 1 day to 388 days. The compressive strength of
 MSC at 28 days ranged from 10.1 MPa to 96.3 MPa.
-![img_1.png](img_1.png)
+![img_1.png](artifacts/images/img_1.png)
 ##**As Data set have few missing values.**
-![img_3.png](img_3.png)
+![img_3.png](artifacts/images/img_3.png)
 above data is before missing value handling
 
 ###Missing values can be handle by following methods:
@@ -67,6 +67,10 @@ mean- average values in whole feature
 median- The median is the middle number in a sorted, ascending or descending
 mode-The mode is the value that appears most often in a set of data values
 ```
+![](D:\Machine learning concrete\Tensile_compressive_concrete\artifacts\images\index_image.jpg)
+
+![](D:\Machine learning concrete\Tensile_compressive_concrete\artifacts\images\unique-buildings.jpg)
+
 
 
 ![median](https://user-images.githubusercontent.com/62197447/151695755-7088c5e8-adcb-4964-8266-2a88a63bfda6.png)
