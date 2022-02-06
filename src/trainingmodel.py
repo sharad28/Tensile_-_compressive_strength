@@ -13,13 +13,8 @@ from src.data_preprocessing import preprocessing
 from src.utils.common import create_dir
 from src.utils.common import config_data
 from src.file_methods import file_operation
+from src.utils.logg import logging
 
-logging.basicConfig(
-    filename=os.path.join('artifacts',"logs", 'running_logs.log'),
-    level=logging.INFO,
-    format="[%(asctime)s: %(levelname)s: %(module)s]: %(message)s",
-    filemode="a"
-    )
 
 class trainModel:
 
@@ -38,7 +33,7 @@ class trainModel:
                                              self.artifacts['PREPARED_DATA'],
                                              self.artifacts['PREPARED_DATA_FILE_NAME'])
             logging.info("Data started loading from prepared_data")
-            __df = pd.read_csv(__prepared_data_dir)
+            __df = pd.read_csv(__prepared_data_dir,index_col=False)
             logging.info("Data loading are completed for training")
             logging.info("reading data from config for params is started")
             self.params = self.configdata['params']
