@@ -2,7 +2,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 from xgboost import XGBRegressor
 from sklearn.metrics import roc_auc_score,accuracy_score
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
 import numpy as np
@@ -10,13 +10,7 @@ from src.utils.common import config_data
 import logging
 import os
 import pandas as pd
-
-logging.basicConfig(
-    filename=os.path.join('artifacts',"logs", 'running_logs.log'),
-    level=logging.INFO,
-    format="[%(asctime)s: %(levelname)s: %(module)s]: %(message)s",
-    filemode="a"
-    )
+from src.utils.logg import logging
 
 class Model_finder:
     """
@@ -69,9 +63,11 @@ class Model_finder:
 
             #Calculating RMSE & r-square error for test dataset
             y_test_pred  = self.xgr.predict(test_x)
-            self.rmse = np.sqrt(mean_squared_error(test_y,y_test_pred))
-
-            logging.info(f"RMSE for xgboost best model is {self.rmse}")
+            self.rmse = round(np.sqrt(mean_squared_error(test_y,y_test_pred)),2)
+            self.r2 = round(r2_score(test_y,y_test_pred),2)
+            logging.info("**"*20)
+            logging.info(f"RMSE for xgboost best model is {self.rmse}\nr2_score for xgboost is {self.r2}")
+            logging.info("**" * 20)
 
 
             return self.xgr
