@@ -1,7 +1,7 @@
 import pickle
 import os
 import shutil
-import logging
+from src.utils.logg import logging
 from src.utils.common import config_data
 
 class file_operation:
@@ -30,7 +30,7 @@ class file_operation:
             target_dir = self.config['params']['TARGET']
             self.model_directory = os.path.join(artifact_dir,model_dir,target_dir)
             if os.path.isdir(self.model_directory):
-                shutil.rmtree(os.path.join(artifact_dir,model_dir))
+                shutil.rmtree(os.path.join(artifact_dir,model_dir,target_dir))
                 os.makedirs(os.path.join(artifact_dir,model_dir),exist_ok = True)
                 os.makedirs(self.model_directory,exist_ok = True)
             else:
@@ -44,20 +44,21 @@ class file_operation:
             logging.exception(f"Model File '{filename}' could not be saved. Exited the save_model method of the Model_Finder class")
             raise Exception()
 
-    def load_model(self,filename):
+    def load_model(self,filename_loc):
         """
                             Method Name: load_model
                     Description: load the model file to memory
                     Output: The Model file loaded in memory
                     On Failure: Raise Exception
         """
+
         logging.info('Entered the load_model method of the File_Operation class')
         try:
-            with open(self.model_directory + '/' + filename + '.sav',
-                      'rb') as f:
-                logging(f'Model File {filename} loaded. Exited the load_model method of the Model_Finder class')
+            self.filename_loc = filename_loc
+            with open(self.filename_loc,'rb') as f:
+                logging.info(f'Model File {self.filename_loc} loaded. Exited the load_model method of the Model_Finder class')
                 return pickle.load(f)
         except Exception as e:
             logging.exception(f'Exception occured in load_model method of the Model_Finder class. Exception message:{e}')
-            logging.info(f'Model File {filename} could not be saved. Exited the load_model method of the Model_Finder class')
+            logging.info(f'Model File {self.filename_loc} could not be saved. Exited the load_model method of the Model_Finder class')
             raise Exception()
