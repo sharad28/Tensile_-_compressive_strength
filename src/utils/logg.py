@@ -1,9 +1,10 @@
 from datetime import datetime
 import os
 from src.utils.common import create_dir
+import logging
 
 logging.basicConfig(
-    filename=os.path.join("logs", 'running_logs.log'),
+    filename=os.path.join("artifacts","logs", 'running_logs.log'),
     level=logging.INFO,
     format="[%(asctime)s: %(levelname)s: %(module)s]: %(message)s",
     filemode="a"
