@@ -19,11 +19,11 @@
 <body>
     <!-- Nav As a heading -->
     <nav class="navbar navbar-dark bg-dark">
-        <span class="navbar-brand mb-0 h1">Tensile & Compressive Strength Prediction at 28-day</span>
+        <span class="navbar-brand mb-0 h1">Tensile & Compressive Strength of Concrete with manufactured sand (MSC) Prediction at 28-day</span>
     </nav>
     <br> 
     <br>
-    <h4 class="mx-3" style="color: BLACK;" >Please fill the following details in order to Strength of concrete</h4>
+    <h4 class="mx-3" style="color: BLACK;" >Please fill the following details in order to predict</h4>
     
     <div class="container">
         <form action="\predict" method="post" class="my-3">
@@ -31,7 +31,7 @@
                 <div class="col">
                     <div class="card my-3 mx-3" id="card" style="width: 30rem;">
                         <div class="card-body">
-                                <h5 class="card-title">Compressive strength of cement</h5>
+                                <h5 class="card-title">Compressive strength of cement binder (MPa)</h5>
                                 <input type="text" name="Comp_strength_cement" class="form-control" placeholder="Enter Integer Value"
                                 required="required">
                         </div>
@@ -41,7 +41,7 @@
                     <div class="card my-3 mx-3" id="card1" style="width: 30rem;">
                         <div class="card-body">
 
-                            <h5 class="card-title">Tensile Strength of cement</h5>
+                            <h5 class="card-title">Tensile Strength of cement binder (MPa)</h5>
                             <input type="text" name="Tensile_strenth_cement" class="form-control" placeholder="Enter Integer Value"
                             required="required">
 
@@ -51,7 +51,7 @@
                 <div class="col">
                     <div class="card my-3 mx-3" id="card2" style="width: 30rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Curing time</h5>
+                            <h5 class="card-title">Curing time (days) (whole number only)</h5>
                             <input type="text" name="Curing_time" class="form-control" placeholder="Enter Integer Value"
                             required="required">
                         </div>
@@ -60,7 +60,7 @@
                 <div class="col">
                     <div class="card my-3 mx-3" id="card3" style="width: 30rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Crushed stone size </h5>
+                            <h5 class="card-title">Crushed stone size (mm) (general range: 10 to 80)</h5>
                             <input type="text" name="Crushed_stone_size" class="form-control" placeholder="Enter Integer Value"
                             required="required">
                         </div>
@@ -69,7 +69,7 @@
                 <div class="col">
                     <div class="card my-3 mx-3" id="card4" style="width: 30rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Stone powder content</h5>
+                            <h5 class="card-title">Stone powder content (general range:0.0 to 0.2 )</h5>
                             <input type="text" name="Stone_powder_content" class="form-control" placeholder="Enter Integer Value"
                             required="required">
                         </div>
@@ -78,7 +78,7 @@
                 <div class="col">
                     <div class="card my-3 mx-3" id="card5" style="width: 30rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Fineness_modulus</h5>
+                            <h5 class="card-title">Fineness_modulus (GPa) (general range:2.2 to 3.5)</h5>
                             <input type="text" name="Fineness_modulus" class="form-control" placeholder="Enter Integer Value"
                             required="required">
                         </div>
@@ -87,7 +87,7 @@
                 <div class="col">
                     <div class="card my-3 mx-3" id="card6" style="width: 30rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Water_binder_ratio</h5>
+                            <h5 class="card-title">Water_binder_ratio (General range:0.25 to 0.7)</h5>
                             <input type="text" name="Water_binder_ratio" class="form-control" placeholder="Enter Integer Value"
                             required="required">
                         </div>
@@ -96,7 +96,7 @@
                 <div class="col">
                     <div class="card my-3 mx-3" id="card7" style="width: 30rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Water_cement_ratio</h5>
+                            <h5 class="card-title">Water_cement_ratio(General range:0.31 to 1)</h5>
                             <input type="text" name="Water_cement_ratio" class="form-control" placeholder="Enter Integer Value"
                             required="required">
                         </div>
@@ -105,7 +105,7 @@
                 <div class="col">
                     <div class="card my-3 mx-3" id="card8" style="width: 30rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Water</h5>
+                            <h5 class="card-title">Water (kg/m^3) (General range:100 to 300)</h5>
                             <input type="text" name="Water" class="form-control" placeholder="Enter Integer Value"
                             required="required">
                         </div>
@@ -114,7 +114,7 @@
                 <div class="col">
                     <div class="card my-3 mx-3" id="card9" style="width: 30rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Sand_ratio</h5>
+                            <h5 class="card-title">Sand_ratio (General range:0.28 to 0.45)</h5>
                             <input type="text" name="Sand_ratio" class="form-control" placeholder="Enter Integer Value"
                             required="required">
                         </div>
@@ -146,6 +146,7 @@
       <br>
       <br>
       <small class="copyright text-muted" style="color: black;">Copyright@: Sarad Mishra👍</small>
+        <small class="copyright text-muted" style="color: black;">contact : saradmishra28@gmail.com</small>
     </footer>
 
     <style>
