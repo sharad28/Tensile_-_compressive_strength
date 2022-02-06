@@ -1,21 +1,21 @@
 import pandas as pd
 from wsgiref import simple_server
 from flask import Flask, request, render_template
-from flask import Response
+# from flask import Response
 import os
 from flask_cors import CORS, cross_origin
-from src.trainingmodel import trainModel
+# from src.trainingmodel import trainModel
 import flask_monitoringdashboard as dashboard
 from src.PredictFromModel import prediction
 from src.utils.logg import logging
-import json
-import pickle
+# import json
+# import pickle
 
 os.putenv('LANG', 'en_US.UTF-8')
 os.putenv('LC_ALL', 'en_US.UTF-8')
 
 app = Flask(__name__)
-# dashboard.bind(app)
+dashboard.bind(app)
 CORS(app)
 
 @app.route("/", methods=['GET',"POST"])
@@ -29,7 +29,7 @@ def home():
         logging.info('The Home Method Call The index.html Page')
         return render_template('index.html')
     except Exception as e:
-        logger.info('INFO', 'Something Went Wrong With The Home Method')
+        logging.info('INFO', 'Something Went Wrong With The Home Method')
         raise Exception()
 
 @app.route("/predict", methods=['POST'])
@@ -97,11 +97,11 @@ def report():
     """
 
     try:
-        logger.info('INFO', 'The Home Method Call The index.html Page')
+        logging.info('INFO', 'The Home Method Call The index.html Page')
         return render_template('Tensile_and_compressive_strength_data_from_various_paper.html')
 
     except Exception as e:
-        logger.info('INFO', 'Something Went Wrong With The Home Method')
+        logging.info('INFO', 'Something Went Wrong With The Home Method')
         raise Exception(f'(Home)- Something Went Wrong With The Method \n' + str(e))
 
 
