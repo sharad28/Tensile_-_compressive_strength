@@ -104,10 +104,11 @@ def report():
         logging.info('INFO', 'Something Went Wrong With The Home Method')
         raise Exception(f'(Home)- Something Went Wrong With The Method \n' + str(e))
 
-
+port = int(os.getenv("PORT", 5001))
 if __name__ == "__main__":
     host = '0.0.0.0'
-    port = 5000
-    httpd = simple_server.make_server(host, port, app)
+    # app.run()
+    httpd = simple_server.make_server(host=host, port=port, app=app)
+    # httpd = simple_server.make_server(host='127.0.0.1', port=5000, app=app)
     # print("Serving on %s %d" % (host, port))
     httpd.serve_forever()
