@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import logging
+from src.utils.logg import logging
 import matplotlib.pyplot as plt
 import argparse
 import os
@@ -13,13 +13,6 @@ import time
 from src.utils.common import read_yaml
 from src.utils.common import create_dir
 from src.utils.common import config_data
-
-logging.basicConfig(
-    filename=os.path.join('artifacts',"logs", 'running_logs.log'),
-    level=logging.INFO,
-    format="[%(asctime)s: %(levelname)s: %(module)s]: %(message)s",
-    filemode="a"
-    )
 
 class EDA:
     def __ini__(self,):
@@ -88,6 +81,19 @@ class EDA:
         except Exception as e:
             logging.exception(f"Exception: \n {e} \noccur during KNN imputation")
 
+    def remove_unwanted_features(self,df:pd.DataFrame,column):
+        """
+        This method will remove the features mentioned in input from dataframe
+        :return: updated dataframe
+        """
+        try:
+            logging.info(f"removing feature {column} from data")
+            logging.info(f"Features before removing{df.columns}")
+            df = df.drop(columns=column)
+            logging.info(f"Features after removing{df.columns}")
+            return df
+        except Exception as e:
+            logging.exception(f"exception occur during removal of unwanted features\n{e}")
 
 
 if __name__ == '__main__':
@@ -98,6 +104,17 @@ if __name__ == '__main__':
 
         eda = EDA()
         df = eda.read_csv('artifacts/initial_prepared_data/Updated_init_data.csv')
+
+        #removed the unwanted features: this features will not have to much impact on prediction
+        df = eda.remove_unwanted_features(df,['Unnamed: 0','Slump(mm)'])
+        # Updating the name of columns
+        # [ 'Compressive_strength_of_cementfce(MPa)',
+        #  'Tensile_strength_of_cementfct(MPa)', 'Curing_age_(day)',
+        #  'Dmax of Crushed stone(mm)', 'Stone powder content in Sand (%)',
+        #  'Fineness modulus of sand ', 'W/B', 'Water to cement ratio mw/mc',
+        #  'Water(kg/m3)', 'Sand ratio(%)',
+        #  'Compressive_strength_(MPa)',
+        #  'tensile_strength_(MPa)']
         eda.missing_val_handling_by_KNN(df)
         logging.info("EDA.py run is completed")
     except Exception as e:
