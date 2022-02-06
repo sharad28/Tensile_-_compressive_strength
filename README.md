@@ -70,3 +70,16 @@ Its has been proven to be the best methods are XGBoost for prediction of concret
 ![img_2.png](img_2.png)
 2. Predictive page:
 ![img_1.png](img_1.png)
+
+## Deployment Link
+[Heroku Link](https://concretestrengthusingml.herokuapp.com/)
+
+## Technology Used
+1. Python
+2. Sklearn
+3. Pandas
+4. Numpy
+5. Flask
+6. HTML
+7. AWS
+8. Heroku
