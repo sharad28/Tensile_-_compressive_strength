@@ -10,12 +10,11 @@ artifacts:
   PREPARED_DATA: EDA_prepared_data
   PREPARED_DATA_FILE_NAME : preprocessed_data.csv
 
-
 params:
   KNN_N_NEIGHBORS : 5
   KNN_WEIGHTS : uniform
-  FEATURES_NOT_FOR_TRIANING : Splitting tensile strengthfst,t(MPa)
-  TARGET: Compressive strengthfcu,t(MPa)
+  FEATURES_NOT_FOR_TRIANING : Compressive strengthfcu,t(MPa)
+  TARGET: Splitting tensile strengthfst,t(MPa)
   XGBOOST_PARAMS:
     learning_rate: [ 0.5, 0.1, 0.01, 0.001 ]
     max_depth: [ 3, 5, 10, 20 ]
