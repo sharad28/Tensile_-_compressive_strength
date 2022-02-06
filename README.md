@@ -1,80 +1,72 @@
 # Tensile strength development of concrete with manufactured sand
 
 ```buildoutcfg
-Concrete with manufactured sand (MSC) is a potential environmental friendly
-building material. With the widespread awareness of the environmental friendly 
-construction and the sustainability of urbanization development,the supply of 
-natural sand is limited by the governmental protection of farmland and river 
-course. Manufactured sand crushed from stone or gravel, also known as 
-machine-made sand,artificial sand or crushed-stone sand, has been used as 
-a substitute of natural sand in concrete.
-It has also been reported the influence that the manufactured sand replacing 
-natural sand has on bond property between steel bar and MSC. Relative to the 
-studies that mainly focused on long-term compressive strength of MSC, a 
-limited number of studies have investigated on the long-term tensile strength 
-of MSC. 
-While it is widely accepted that tensile strength is related to compressive
-strength, increasing compressive strength by using manufactured sand has
-been found to improve the tensile strength of MSC , but the
-conversion from compressive strength to tensile strength was lack
-of determination. As the significance of steady long-term tensile
-strength harmonized with compressive strength of MSC to the
-reliable cracking resistance and serviceable crack development,
-and the load-carrying capacities of reinforced concrete structures
-under flexure, shear, torsion, punching, fatigue and impaction,
-the further studies on the determination of long-term tensile
-strength of MSC is still necessary.
+Concrete with manufactured sand (MSC) is a potential environmentally friendly building material. With the widespread awareness of the environmentally friendly construction and the sustainability of urbanization development, the supply of natural sand is limited by the governmental protection of farmland and river course. Manufactured sand crushed from stone or gravel, also known as machine-made sand, artificial sand, or crushed-stone sand, has been used as a substitute of natural sand in concrete. 
+Machine learning (ML)-based prediction of non-linear composition-strength relationship in concretes requires a large, complete, and consistent dataset. However, the availability of such datasets is limited as the datasets often suffer from incompleteness because of missing data corresponding to different input features, which makes the development of robust ML-based predictive models challenging. Besides, as the degree of complexity in these ML models increases, the interpretation of the results becomes challenging. These interpretations of results are critical towards the development of efficient materials design strategies for enhanced materials performance. 
 ```
 ##This model will do predicting the tensile strength & compressive strength of concrete
 
 ### DATA SET
 
-A consisted of 755 datasets of splitting tensile strength at
-different curing days of MSC was assembled from 41 experimental
-studies.
- Raw materials of MSC
-were the ordinary silicate cements, the admixture consisted of fly
-ash, slag and silica fume, the crushed stone with maximum grain
-size in a range of 12 mm ~ 120 mm the manufactured sand with
-fineness modulus in a range of 2.2–3.55. In these experimental
-studies, different maximum particle sizes of 0.075 mm and
-0.160 mm were defined for stone powder in manufactured sand.
-The contents of stone powder with particle size of 0 ~ 0.075 mm
-ranged in 0 ~ 21.8%, whereas those with particle size of
-0 ~ 0.160 mm varied in 0 ~ 40%. The water-binder ratio
-W/B = 0.24 ~ 1.00, while the water-cement ratio
-mw/mc = 0.30 ~ 1.43. The sand ratio was 24% ~ 54%. The slump of
-fresh MSC varied from 10 mm to 260 mm, the curing time of specimens 
-ranged from 1 day to 388 days. The compressive strength of
-MSC at 28 days ranged from 10.1 MPa to 96.3 MPa.
+A consisted of 755 datasets of splitting tensile strength at different curing days of MSC was assembled from 41 experimental studies.
+Raw materials of MSC:
+The cement consist of the ordinary silicate cements, the admixture consisted of fly
+ash, slag and silica fume. 
+The other mixture ingredient i.e.,input features are:
+
+1.crushed stone with maximum grain size: 12 mm ~ 120 mm 
+2.manufactured sand with fineness modulus : 2.2–3.55.
+3.stone powder in manufactured sand : different maximum particle sizes of 0.075 mm and 0.160 mm were defined.
+4.contents of stone powder with particle size of 0 ~ 0.075 mm ranged in 0 ~ 21.8%, 
+whereas those with particle size of 0 ~ 0.160 mm varied in 0 ~ 40%. 
+5.the water-binder ratio W/B = 0.24 ~ 1.00, 
+6.the water-cement ratio mw/mc = 0.30 ~ 1.43. 
+7.the sand ratio was 24% ~ 54%. 
+8.the slump of fresh MSC varied from 10 mm to 260 mm, # was not consider
+9.the curing time of specimens ranged from 1 day to 388 days. 
+10. compressive strength of cement 
+11. tensile strength of cement binder
 ![img_1.png](artifacts/images/img_1.png)
-##**As Data set have few missing values.**
+##As Data set have few missing values.
 ![img_3.png](artifacts/images/img_3.png)
 above data is before missing value handling
 
 ###Missing values can be handle by following methods:
 ```buildoutcfg
-1. Removing the instance with any missing features - 
-In this method, the missing values are deleted from the dataset. In 
-general, this method is adopted only when the proportion of missing 
-values is significantly small (<5%).
-Also dataset is small. therefore its not a good idea to remove the instance.
+It has been observed that KNN with K=10 gives least r-square and RMSE for the data.
 ```
-
-```buildoutcfg
-2. Using mean/median/mode
-mean- average values in whole feature
-median- The median is the middle number in a sorted, ascending or descending
-mode-The mode is the value that appears most often in a set of data values
-```
-
-
-
-![median](https://user-images.githubusercontent.com/62197447/151695755-7088c5e8-adcb-4964-8266-2a88a63bfda6.png)
-
 Its has been proven to be the best methods are XGBoost for prediction of concrete strength in various papers.
 
+###Input features were
 
+1. Compressive strength of cement binder
+2. Tensile Strength of cement binder
+3. Curing time (days) 
+4. Crushed stone size (mm) 
+5. Stone powder content
+6. Fineness_modulus (GPa) 
+7. Water_binder_ratio
+8. Water_cement_ratio
+9. Water (kg/m^3)
+10. Sand_ratio
 
+### Output variable 
+1. Compressive strength of concrete with manufacturing sand at 28day
+2. Spliting tensile strength of concrete with manufacturing sand at 28day
 
+### Aproach
+1. Data Exploration     : I started exploring dataset using pandas,numpy,matplotlib and seaborn. 
+2. Data visualization   : Ploted graphs to get insights about dependend and independed variables.
+3. Model Selection I    :  Tested all base models to check the base accuracy.
+4. Model Selection II   :  Performed Hyperparameter tuning using gridsearchCV.
+5. Pickle File          :  Selected model as per best accuracy and created pickle file using Pickle .
+6. Webpage & deployment :  
+   1. Created a web form that takes all the necessary inputs from user and shows output.
+   2. Using Circle Ci and docker-hub , application is deployed on heruko 
+ 
 
+## USER Interface
+1. Main Page:
+![img_2.png](img_2.png)
+2. Predictive page:
+![img_1.png](img_1.png)
