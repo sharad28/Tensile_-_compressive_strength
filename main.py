@@ -63,6 +63,7 @@ def predict():
                 new_header = user_input_data.iloc[0]  # grab the first row for the header
                 user_input_data = user_input_data[1:]  # take the data less the header row
                 user_input_data.columns = new_header
+                #converting dataframe dtype to float as its will cause error in case of object
                 user_input_data = user_input_data.astype(float)
                 obj_pred = prediction()
                 model_comp, model_tensile = obj_pred.predictionFromModel()
