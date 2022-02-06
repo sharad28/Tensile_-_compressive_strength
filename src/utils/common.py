@@ -24,8 +24,9 @@ def config_data():
     return config_content
 
 #saving data from config file
-args = argparse.ArgumentParser()
-args.add_argument("--config", "-c", default="configs/config.yaml")
-parsed_args = args.parse_args()
-config_path = parsed_args.config
+# args = argparse.ArgumentParser()
+# args.add_argument("--config", "-c", default="configs/config.yaml")
+# parsed_args = args.parse_args()
+# config_path = parsed_args.config
+config_path = "configs/config.yaml"
 config_content = read_yaml(config_path)
