@@ -35,7 +35,7 @@ above data is before missing value handling
 ```buildoutcfg
 It has been observed that KNN with K=10 gives least r-square and RMSE for the data.
 ```
-Its has been proven to be the best methods are XGBoost for prediction of concrete strength in various papers.
+The best methods are XGBoost for prediction of concrete strength.
 
 ###Input features were
 
